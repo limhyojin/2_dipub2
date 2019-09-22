@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>맛있는건 늘 짜릿해</title>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+	<style>
+		 #frame{
+		 	position: absolute;
+		 	z-index: 3;
+			width: 300px;
+			left:30px;
+			top:240px;
+			height: 280px;
+			margin: 10px;
+			padding: 10px;
+			float: left;
+		}
+		#eat-box {
+			position:absolute;
+			left:900px;
+			top:200px;
+			width: 300px;
+			height: 300px;
+			margin: 10px;
+			padding: 10px;
+	
+			float: left;
+			z-index: 3;
+			
+
+		}
+		#eat {
+			position: absolute;
+			left:840px;		
+			z-index:2;
+		}
+
+		#fat {
+			position: absolute;
+			width:1600px;
+			left:300px;
+			top:-20px;
+			opacity:0;
+			z-index:1;
+		}
+
+		#li {
+			position: absolute;
+			width:500px;
+			left:100px;
+			top:200px;
+			opacity: 0;
+			z-index: 0;
+		}
+		#twi{
+			position:absolute;
+			width: 1000px;
+			left:100px;
+			opacity:0;
+			z-index:0;		;
+		}
+		#ham{
+			position: absolute;
+			width:250px;
+			z-index:2;
+			top:0;
+			left:-30px;
+			opacity: 0;
+		}
+		#hot{
+			position: absolute;
+			width:250px;
+			z-index:2;
+			top:600px;
+			left:0;
+			opacity: 0;
+		}
+		@keyframes mo{
+			from{}
+			to{left:1300px;}
+		}
+		h1 {font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: 40px; margin-left:400px;margin-top:50px;}
+	</style>
+</head>
+
+<body id="wrap">
+
+	<h1>드래그해 컵케이크를 먹여보세요!</h1>
+	<audio id="mysound" loop>
+  <source src="punk.mp3" type="audio/ogg">
+  </audio>
+	<img src="life.gif" id="li">
+	<img src="mouth.gif" id="eat">
+	<img src="happy2.gif" id="fat">
+	<img src="twinkle.gif" id="twi">
+	<img src="hamburger.gif" id="ham">
+	<img src="hotdog.gif" id="hot">
+
+	<div id="frame" ondrop="drop(event)" ondragover="dragEnter(event)">
+		<img id="app" width="300" height="280" src="cake.gif" draggable="true" ondragstart="drag(event)">
+	</div>
+	<div id="eat-box" ondrop="drop(event)" ondragover="dragEnter(event)"></div>
+
+	<script>
+		function dragEnter(ev) {
+			ev.preventDefault();
+		}
+
+		function drag(ev) {
+			ev.dataTransfer.setData("text", ev.target.id);
+		}
+
+		function drop(ev) {
+			ev.preventDefault();
+			var data = ev.dataTransfer.getData("text");
+			ev.target.appendChild(document.getElementById(data));
+			app.style.opacity="0";
+			wrap.style.background="black";
+			fat.style.opacity="1";
+			li.style.opacity="1";
+			twi.style.opacity="1";
+			mysound.play();
+			ham.style.animation="mo 8s linear alternate infinite";
+			hot.style.animation="mo 8s linear alternate infinite";
+			ham.style.opacity="1";
+			hot.style.opacity="1";
+		}
+	</script>
+
+</body>
+
+</html>
